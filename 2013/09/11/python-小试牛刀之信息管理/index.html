@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python 小试牛刀之信息管理 | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="这个是之前写的半成品，但是一直没有好好的写完，今晚我把它补充完整，并且贴出了遇到的问题
+这个程序并没有处理中文，主要是python 2.7对于中文的支持太蛋疼了，虽然可以设置utf8编码，但是如果列表中的某个变量是中文的话，打就会打印出那种我看不懂的编码，我干脆懒得理了，我想自己用python来处理中文的需求基本没有，可能以后就是用python谢谢程序玩玩而已">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="python 小试牛刀之信息管理"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-11T13:43:00.000Z"><a href="/2013/09/11/python-小试牛刀之信息管理/">2013-09-11</a></time>
+      
+      
+  
+    <h1 class="title">python 小试牛刀之信息管理</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这个是之前写的半成品，但是一直没有好好的写完，今晚我把它补充完整，并且贴出了遇到的问题</p>
+<p>这个程序并没有处理中文，主要是python 2.7对于中文的支持太蛋疼了，虽然可以设置utf8编码，但是如果列表中的某个变量是中文的话，打就会打印出那种我看不懂的编码，我干脆懒得理了，我想自己用python来处理中文的需求基本没有，可能以后就是用python谢谢程序玩玩而已<br><a id="more"></a></p>
+<pre><code><span class="comment">#!/usr/bin/python</span>
+<span class="comment"># -*- coding: utf-8 -*-</span>
+<span class="keyword">from</span> os <span class="keyword">import</span> system
+system(<span class="string">"clear"</span>)
+
+<span class="function"><span class="keyword">def</span> <span class="title">menu</span><span class="params">()</span>:</span>
+    <span class="keyword">print</span> <span class="string">"\t   Welcome to the Information Management Center"</span>
+    <span class="keyword">print</span> <span class="string">"\t\t\t1.Add user"</span>
+    <span class="keyword">print</span> <span class="string">"\t\t\t2.View information"</span>
+    <span class="keyword">print</span> <span class="string">"\t\t\t3.Delete user"</span>
+    <span class="keyword">print</span> <span class="string">"\t\t\t4.Display all information"</span>
+
+<span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">()</span>:</span>
+    flag=<span class="number">0</span>
+    username=raw_input(<span class="string">'Please enter the name that you wanna view: '</span>)
+    <span class="keyword">print</span> info.get(username,<span class="string">'Sorry,i can not find it'</span>)
+    raw_input(<span class="string">'Press enter to continue'</span>)
+<span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">()</span>:</span>
+    name=raw_input(<span class="string">'NAME: '</span>)
+    <span class="keyword">for</span> temp <span class="keyword">in</span> info:
+        <span class="keyword">if</span> name==temp:
+            raw_input(<span class="string">'The name you enterd already exist!(Press enter to continue)'</span>)
+            <span class="keyword">return</span>
+    birth=input(<span class="string">'BIRTHDAY: '</span>)
+    job=raw_input(<span class="string">'OCCUPATION: '</span>)
+    info[name]=(birth,job)
+    <span class="keyword">print</span> <span class="string">'done'</span>
+    raw_input(<span class="string">'Press enter to continue'</span>)
+<span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">()</span>:</span>
+    flag=<span class="number">0</span>
+    name=raw_input(<span class="string">'Enter the name what you want to delete: '</span>)
+    <span class="comment">#for temp in info:这样迭代并且删除有问题</span>
+    <span class="keyword">for</span> temp <span class="keyword">in</span> info.keys():
+        <span class="keyword">if</span> name==temp:
+            flag=<span class="number">1</span>
+            <span class="keyword">del</span> info[name]
+            <span class="keyword">print</span> <span class="string">'done'</span>
+            raw_input(<span class="string">'Press enter to continue'</span>)
+    <span class="keyword">if</span> flag==<span class="number">0</span>:
+        <span class="keyword">print</span> <span class="string">'I can not find the user.'</span>
+        raw_input(<span class="string">'Press enter to continue'</span>)
+<span class="function"><span class="keyword">def</span> <span class="title">showall</span><span class="params">()</span>:</span>
+    flag=<span class="number">0</span>
+    <span class="keyword">for</span> name <span class="keyword">in</span> info:
+        flag=<span class="number">1</span>
+        <span class="keyword">print</span> name,info[name]
+    <span class="keyword">if</span> flag==<span class="number">0</span>:
+        <span class="keyword">print</span> <span class="string">'No data'</span>
+    raw_input(<span class="string">'Press enter to continue'</span>)
+
+info={}
+info[<span class="string">'tcstory'</span>]=(<span class="number">1993</span>,<span class="string">"student"</span>)
+<span class="keyword">while</span> <span class="number">1</span>:
+    menu()
+    <span class="keyword">try</span>:
+        choice=input(<span class="string">"Enter your choice(q to quit): "</span>)
+        <span class="keyword">if</span> int(choice)!=choice <span class="keyword">and</span> abs(choice)+choce==<span class="number">0</span>:
+            <span class="keyword">print</span> <span class="string">'Please enter the correct option\n'</span>
+            system(<span class="string">"clear"</span>)
+            <span class="keyword">continue</span>
+    <span class="keyword">except</span> (NameError,ValueError,SyntaxError): <span class="comment">#syntaxerror 是为了防止一开始就直接输入回车键引起的错误</span>
+        <span class="keyword">print</span> <span class="string">"OKey,goodbye!"</span>
+        <span class="keyword">break</span>
+    <span class="keyword">if</span> choice==<span class="number">1</span>:
+        add()
+        system(<span class="string">'clear'</span>)
+    <span class="keyword">elif</span> choice==<span class="number">2</span>:
+        search()
+        system(<span class="string">'clear'</span>)
+    <span class="keyword">elif</span> choice==<span class="number">3</span>:
+        delete()
+        system(<span class="string">'clear'</span>)
+    <span class="keyword">elif</span> choice==<span class="number">4</span>:
+        showall()
+        system(<span class="string">'clear'</span>)
+    <span class="keyword">else</span>:
+        <span class="keyword">print</span> <span class="string">'Your choice is invalid.'</span>
+</code></pre><p>之前遇到了一个问题，就是删除某个键的时候出错了<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/11214302-ae23416e65794d1081f15ebf2e31263c.png" alt="此处输入图片的描述"></p>
+<p>百度了一下，这个博客给出了解决的方法</p>
+<p> <a href="http://www.cnblogs.com/codeape/archive/2012/11/21/2780534.html" target="_blank" rel="external">http://www.cnblogs.com/codeape/archive/2012/11/21/2780534.html</a></p>
+<p>接下来我还要对这个程序进行修改，1.把所用到的函数放入一个模块中，2.从文件中读取数据和吧数据写入文件中</p>
+<p>这个是明天的工作，今晚还要学习english和看python 的模块和文件操作部分，并且还要看一下vim 中syntaxtic 的插件的使用方法</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/cnblog的旧文/">cnblog的旧文</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
