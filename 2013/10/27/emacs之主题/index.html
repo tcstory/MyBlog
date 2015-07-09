@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | 花瓣奶牛的博客</title>
+  <title>emacs之主题 | 花瓣奶牛的博客</title>
   <meta name="author" content="tcstory">
   
-  <meta name="description" content="About me!">
+  <meta name="description" content="记录一下自己今天修改主题的方法，默认的主题是一片惨白啊，很难看啊～！所以自己捣鼓了一个主题，在网上找到的，觉得还是蛮好看的 叫做monokai">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="about"/>
+  <meta property="og:title" content="emacs之主题"/>
   <meta property="og:site_name" content="花瓣奶牛的博客"/>
 
   
@@ -46,26 +46,42 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2013-10-27T05:31:00.000Z"><a href="/MyBlog/2013/10/27/emacs之主题/">2013-10-27</a></time>
+      
       
   
-    <h1 class="title">about</h1>
+    <h1 class="title">emacs之主题</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>About me!</p>
+        <p>记录一下自己今天修改主题的方法，默认的主题是一片惨白啊，很难看啊～！所以自己捣鼓了一个主题，在网上找到的，觉得还是蛮好看的 叫做monokai<br><a id="more"></a></p>
+<p>如图所示<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/27132518-4b12af88eac94234a553b7857890c534.png" alt="此处输入图片的描述"><br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/27132536-aa01ae953c594aaebc5b6630dda807af.png" alt="此处输入图片的描述"></p>
+<p>我感觉还是很好看滴～！</p>
+<p>在 .emacs 中的配置如下，记住，之前我已经创建了～/.emacs.d/themes这个文件夹，并把monokai.el放入了这个文件夹里面</p>
+<p>;;加入加载路径<br>(add-to-list ‘custom-theme-load-path “~/.emacs.d/themes”)<br>;;启用主题<br>(load-theme ‘monokai t)</p>
+<p>后来在网上找到了一个窗口半透明的方法，试用了一下，感觉很蛋疼，方法依旧，吧下面的这段文字放入.emacs文件中</p>
+<p>;;下面是窗口的半透明效果的开启<br>;;可以用来区分当前窗口和非当前窗口<br>;;启动时自动开启窗口半透明效果 f10键用来切换</p>
+<p>(global-set-key (kbd “<f10>“) ‘loop-alpha)<br>;当前窗口和非当前窗口时透明度<br>(setq alpha-list ‘((90 70) (100 100)))<br>(defun loop-alpha ()<br>(interactive)<br>(let ((h (car alpha-list)))<br>((lambda (a ab)<br>(set-frame-parameter (selected-frame) ‘alpha (list a ab))<br>(add-to-list ‘default-frame-alist (cons ‘alpha (list a ab))))<br>(car h) (car (cdr h)))<br>(setq alpha-list (cdr (append alpha-list (list h))))))<br>;启动窗口时时自动开启窗口半透明效果<br>(loop-alpha)</f10></p>
+<p>效果如图显示<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/27133017-926b7fa1336f460ea878afb62a967850.png" alt="此处输入图片的描述"></p>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
         
         
       

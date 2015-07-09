@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | 花瓣奶牛的博客</title>
+  <title>python 列表中插入自定义类的疑惑 | 花瓣奶牛的博客</title>
   <meta name="author" content="tcstory">
   
-  <meta name="description" content="About me!">
+  <meta name="description" content="python 列表中插入自定义类的疑惑">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="about"/>
+  <meta property="og:title" content="python 列表中插入自定义类的疑惑"/>
   <meta property="og:site_name" content="花瓣奶牛的博客"/>
 
   
@@ -46,26 +46,41 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2013-09-13T16:33:00.000Z"><a href="/MyBlog/2013/09/14/python-列表中插入自定义类的疑惑/">2013-09-14</a></time>
+      
       
   
-    <h1 class="title">about</h1>
+    <h1 class="title">python 列表中插入自定义类的疑惑</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>About me!</p>
+        <p>python 列表中插入自定义类的疑惑<br><a id="more"></a><br>Python 2.7.4 (default, Apr 19 2013, 18:32:33)<br>[GCC 4.7.3] on linux2<br>Type “help”, “copyright”, “credits” or “license” for more information.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>class Person:                                #我自定义的类<br>…     def setname(self,name):<br>…             self.name=name<br>…<br>list=[ ]                                            #建立一个空列表<br>temp=Person()<br>temp.setname(‘a’)<br>list.append(temp)<br>list[0].name<br>‘a’                                                        #将temp追加到list中后，list[0].name 的值为‘a’<br>temp.setname(‘b’)<br>list.append(temp)<br>list[0].name                                  #经过上两步后，居然list[0]和list[1] 的值都改变了<br>‘b’<br>list[1].name<br>‘b’<br>del temp                                     #删除之前存在的temp后，又重新定义一个，就没有问题了<br>temp=Person()<br>temp.setname(‘c’)<br>list.append(temp)<br>list[0].name<br>‘b’<br>list[1].name<br>‘b’<br>list[2].name<br>‘c’</p>
+</blockquote>
+</blockquote>
+</blockquote>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
         
         
       

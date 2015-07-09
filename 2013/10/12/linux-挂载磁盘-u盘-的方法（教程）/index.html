@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux 挂载磁盘 u盘 的方法（教程） | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="好久不写博客了 ，在这次的博客里，我把今晚学习到的内容和大家分享一下，就是linux下面的挂载磁盘和卸载磁盘的方法">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="linux 挂载磁盘 u盘 的方法（教程）"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-10-12T02:10:00.000Z"><a href="/MyBlog/2013/10/12/linux-挂载磁盘-u盘-的方法（教程）/">2013-10-12</a></time>
+      
+      
+  
+    <h1 class="title">linux 挂载磁盘 u盘 的方法（教程）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　　好久不写博客了 ，在这次的博客里，我把今晚学习到的内容和大家分享一下，就是linux下面的挂载磁盘和卸载磁盘的方法<br><a id="more"></a></p>
+<p>　　platform：elementary os （基于ubuntu 12.04）</p>
+<p>　　用到的相关命令有</p>
+<p>　　1. mount （挂载）</p>
+<p>　　2.fuser    （当你卸载设备失败是，用它来察看占用设备的进程）</p>
+<p>　　3.lsusb   （显示usb 的情况）</p>
+<p>　　4.lsblk    （显示电脑识别的所有设备，不管他是否已经被挂载）</p>
+<p>（一）挂载磁盘分区或者是iso文件</p>
+<p>　　1.iso 文件挂载方法</p>
+<p>　　首先，应该在/media下面创建一个来挂载那个iso文件的文件夹，然后 使用挂载命令进行挂载</p>
+<p>　　mount基本命令（-t 参数指定把我要挂载的文件 设置为什么格式）</p>
+<p>　　mount -t iso9660 -o loop 你的设备的路径 要挂载到的路径</p>
+<p>　　以我的电脑挂载opensuse为例：</p>
+<p>　　先在/media下面创建opensuse文件夹</p>
+<p>　　 mkdir -p /media/opensuse</p>
+<p>　　我的iso文件在/media/baby/iso/openSUSE-12.3-KDE-Live-i686.raw ，所以使用的命令是</p>
+<p>　　 sudo mount /media/baby/iso/openSUSE-12.3-KDE-Live-i686.raw /media/opensuse</p>
+<p>　　然后挂载完毕。你现在可以在/media/opensuse下面看到挂载的iso文件了</p>
+<p>　　卸载方法，使用 umount 可以做到</p>
+<p>　　以我为例</p>
+<p>　　sudo umount /media/opensuse 或则 sudo umount /media/baby/iso/openSUSE-12.3-KDE-Live-i686.raw<br>　　也就是说你既可以用/media目录下的文件夹作为参数，也可以把原始文件作为参数来卸载</p>
+<p>　　2.普通分区挂载方法</p>
+<p>　　我安装的系统是双系统，win7和elementary os ，所以我把win7下面的c盘挂载到linux</p>
+<p>　　2.1 首先 你要找到要挂载的磁盘的路径，使用方法   lsblk<br>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12100733-81e6d5dddc7d43dabad210bca6d42a17.png" alt="此处输入图片的描述"><br>　　<br>　　这里有点纠结的地方，就是他不显示盘符的名字，我暂时还没有想到方法，但是我自己安装的系统，所以我知道c盘就是/dev/sda2，因为我知道我给c盘 分了多大的空间，实在不行你先挂载了打开看一下就懂了,(你可能会问，图片上只显示了例如sda1 sda2之类的分区，你为什么在使用的时候在前面加上/dev/xxx 呢？ ，如果你不太了解linux 的文件系统的话，你就把他当作国际惯例算了）</p>
+<p>　　方法也很简单</p>
+<p>　　在/media下面创建一个 文件夹，我以创建c/为例</p>
+<p>　　然后 mount /dev/sda2/ /media/c （把sda2分区挂载到 /media/c 目录下面）就可以了 很简单把？</p>
+<p>　　卸载方法大同小异</p>
+<p>　　sudo umount /dev/sda2 或则 sudo umount /media/c  (因为我把他挂载在/media/c 这个目录下，所以可以这样卸载）</p>
+<p>　　ps 为什么我在上面的命令没有用-t选项呢？ 因为系统能自动识别文件类型，所以这个选项可以省略</p>
+<p>   　　 如果你非要指定不可，有如下选择</p>
+<pre><code>　<span class="title">ext2</span>
+
+　ext3
+
+　ext4
+
+　vfat  windows 下面的FAT16/FAT32文件系统
+
+　ntfs windows下面的NTFS系统（注意，这种文件系统被挂载后在linux下面显示的是fuserblk）
+
+　iso9660 标准的iso文件格式
+</code></pre><p>（二）察看已经挂载的设备</p>
+<p>　　很简单 使用</p>
+<p>　　mount 命令</p>
+<p>　　你可以清楚的看到 我已经挂载 了win7里面一个叫做baby 的磁盘<br>    <img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12101417-a3ddcfbfca484cf8b0583d8e4e5fc712.png" alt="此处输入图片的描述"></p>
+<p>　　当然，也可以使用lsblk ，在MOUNTPOINT 这一列看到了他被挂载到了什么地方<br>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12101522-f3fca21a910b435c8c1a3a9a4c7ec34e.png" alt="此处输入图片的描述"><br> （三）挂载usb</p>
+<p>　　首先要说明的是，在挂载之前，你必须确认电脑已经发现了当前的usb设备，假如插头松了你也没有发现就用了mount 命令也白搭  ，对吧？</p>
+<p>　　使用  lsblk，<br>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12100827-3fa38baefdef4a768eab37050a3ab46d.png" alt="此处输入图片的描述"><br>　　你可以看到有一个sdb ，3.7g 的 ，那个就是我的mp3，挂载方法不再给出，和上面的一样</p>
+<p>（四）卸载出现错误</p>
+<p>　　他会提示你设备正在使用中，你可以 用fuser 来察看到底是谁占用了设备</p>
+<p>　　默认的命令为 fuser -vm 设备的地址</p>
+<p>　　例如 fuser -vm /media/opensuse<br>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12100918-d23373b1282046399c1b1a2fd206c9a8.png" alt="此处输入图片的描述"><br>　　我做测试的时候 ，占用的进程就是 31718</p>
+<p>　　这个时候，你可以kill掉他，或则直接用fuser 处理他 fuser 有如下几个参数比较使用</p>
+<p> 　　-i  提醒用户（假如我要关闭这个占用的进程，在fuser关闭前他会询问我）</p>
+<p>　　-k 关闭占用的进程</p>
+<p>　　普通的察看占用进程可以用这个</p>
+<p>　　fuser -vm /media/opensuse/</p>
+<p>　　暴力的关闭方法  fuser -vmk /media/opensuse/ （如果没有 -i选项，他会一下子关闭所以占用的进程，否则就会一个一个询问）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

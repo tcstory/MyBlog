@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python 不同文件中的变量引用 | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="今晚测试了一下，发现globals()[ ]函数只能引用同一个文件中的全局变量，对于不同文件中的变量就无能为力，">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="python 不同文件中的变量引用"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-12T11:32:00.000Z"><a href="/MyBlog/2013/09/12/python-不同文件中的变量引用/">2013-09-12</a></time>
+      
+      
+  
+    <h1 class="title">python 不同文件中的变量引用</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今晚测试了一下，发现globals()[ ]函数只能引用同一个文件中的全局变量，对于不同文件中的变量就无能为力，<br><a id="more"></a></p>
+<p>而且，有点奇怪的是对于在函数中引用变量的问题，如果引用的是列表和字典，那么可以在函数中修改它的值，但是对于普通的变量，在函数中无法修改他的值，因为传递给函数的只是一个复制的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/usr/python</span></span><br><span class="line">import sys</span><br><span class="line">sys.path.append(<span class="string">'/home/tcstory/desktop'</span>)</span><br><span class="line">import b</span><br><span class="line"><span class="built_in">test</span>=&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;</span><br><span class="line">b.testing(<span class="built_in">test</span>)</span><br><span class="line">x=<span class="number">4</span></span><br><span class="line">b.test1(x)</span><br><span class="line"><span class="built_in">print</span> <span class="string">'original value is '</span>,x</span><br><span class="line">lists=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b.test2(lists)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testing</span><span class="params">(test)</span>:</span></span><br><span class="line">    <span class="keyword">del</span> test[<span class="string">'a'</span>]</span><br><span class="line">    <span class="keyword">print</span> test</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">(x)</span>:</span></span><br><span class="line">    x=x+<span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'in the function ,the value is '</span>,x</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">(lists)</span>:</span></span><br><span class="line">    <span class="keyword">del</span> lists[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">print</span> lists</span><br></pre></td></tr></table></figure>
+<p> 输出如下</p>
+<p>{}<br>in the function ,the value is  5<br>original value is  4<br>[2, 3]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

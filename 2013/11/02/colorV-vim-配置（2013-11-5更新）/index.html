@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>colorV vim 配置（2013.11.5更新） | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="今天看了一点网页编程后，又继续配置我的扩展，因为我下载了很多web开发用到的扩展，但是没有好好的了解一下">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="colorV vim 配置（2013.11.5更新）"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-11-02T07:51:00.000Z"><a href="/MyBlog/2013/11/02/colorV-vim-配置（2013-11-5更新）/">2013-11-02</a></time>
+      
+      
+  
+    <h1 class="title">colorV vim 配置（2013.11.5更新）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天看了一点网页编程后，又继续配置我的扩展，因为我下载了很多web开发用到的扩展，但是没有好好的了解一下<br><a id="more"></a></p>
+<p>　　先给出没有”化妆“的gvim 打开一个css文件的样子，</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02154119-bcd44a1806304cccbb11952f461ecd1f.png" alt="此处输入图片的描述"></p>
+<p>　　后来gvim去韩国整容了，结果……………….注意以下代表颜色的十六进制代码</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02154202-b386b8833ea449b1b846ab8122ff6a14.png" alt="此处输入图片的描述"></p>
+<p>　　看到了吧？16进制代码代表的颜色被colroV用相对应的底色标注上了，是不是很给力，是不是很想拥有啊～！</p>
+<p>　　好吧 我成全你～！</p>
+<p>　　先说一下，我看了一下文档，我估计我用到的功能只有如下3个，我个人的需求还是很少的，没必要搞那么麻烦</p>
+<p>　　:ColorV(<leader>cv)    : show ColorV window 显示色彩管理窗口（我英文很烂，请见谅）</leader></p>
+<p>　　:ColorVEdit  (<leader>ce) : Edit color text under cursor 修改当前光标下的颜色代码</leader></p>
+<p>　　:ColorVInsert  (<leader>cii): Insert color with ColorV window. 在空白处插入一个颜色代码（16进制）</leader></p>
+<p>　　先给大家看一下色彩管理窗口</p>
+<p>　　ps <leader> 这个是vim默认的按键名称，默认情况下是 ”\“ ，他在你的回车键 和backspace键的中间，有关内容请看vim文档 输入 :help mapleader</leader></p>
+<p>　　输入 \ c v （直接在命令模式下输入）</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02154843-a17d92e899254827ae31e722c6767caa.png" alt="此处输入图片的描述"></p>
+<p>　　自己用 h j k l 或则方向键移动一下 回车键选择</p>
+<p>　　这个是编辑当前光标下的色彩代码</p>
+<p> 　　先把光标移动到代码上面（不一定移动到代码开头才有效）</p>
+<p>　　以第九行为例，然后输入 \ c e （直接在命令模式下输入）</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02155047-fa730f2ed286471b96e6a0074064dcc5.png" alt="此处输入图片的描述"></p>
+<p>　　然后选择一下你喜欢的颜色，我用了如下图的紫色</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02155250-4a3bc45615ec43359cf36917b67a890c.png" alt="此处输入图片的描述"></p>
+<p>　　选择好后，直接按下 q 键退出，颜色代码就自动被替换了</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02155331-59ac71402cde41c9a37ca27cf006fb39.png" alt="此处输入图片的描述"></p>
+<p>　　最后一个函数我就不给出式例了，没啥区别</p>
+<p>　　今天（2013.11.5）在终端的vim 开了一下colorv 发现真是惨不忍睹</p>
+<p><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/05141750-b39ba67bd1a441cd979e0f43423e78ae.png" alt="此处输入图片的描述"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

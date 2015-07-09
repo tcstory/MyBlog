@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | 花瓣奶牛的博客</title>
+  <title>python 之 os.path.expanduser() | 花瓣奶牛的博客</title>
   <meta name="author" content="tcstory">
   
-  <meta name="description" content="About me!">
+  <meta name="description" content="python 之 os.path.expanduser()">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="about"/>
+  <meta property="og:title" content="python 之 os.path.expanduser()"/>
   <meta property="og:site_name" content="花瓣奶牛的博客"/>
 
   
@@ -46,26 +46,40 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2013-09-13T11:32:00.000Z"><a href="/MyBlog/2013/09/13/python-之-os-path-expanduser/">2013-09-13</a></time>
+      
       
   
-    <h1 class="title">about</h1>
+    <h1 class="title">python 之 os.path.expanduser()</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>About me!</p>
+        <p>python 之 os.path.expanduser()<br><a id="more"></a><br> 奇怪了，我的《python基础教程第二版》里面写的是</p>
+<p>sys.path.expanduser(‘~/python’)</p>
+<p>使用后会有如下报错</p>
+<p>Traceback (most recent call last):<br>  File “./info.py”, line 6, in <module><br>    sys.path.expanduser(‘~/desktop/‘)<br>AttributeError: ‘list’ object has no attribute ‘expanduser’</module></p>
+<p>后来查了一下，发现原来这不是正确的，应该使用下面这个</p>
+<p>os.path.expanduser(‘~/python/‘)</p>
+<p>python版本是2.7</p>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
         
         
       

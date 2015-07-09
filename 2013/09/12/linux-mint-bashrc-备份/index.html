@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux mint bashrc 备份 | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="备份一下">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="linux mint bashrc 备份"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-12T13:34:00.000Z"><a href="/MyBlog/2013/09/12/linux-mint-bashrc-备份/">2013-09-12</a></time>
+      
+      
+  
+    <h1 class="title">linux mint bashrc 备份</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>备份一下<br><a id="more"></a></p>
+<h1 id="~/-bashrc:_executed_by_bash(1)_for_non-login_shells-">~/.bashrc: executed by bash(1) for non-login shells.</h1><h1 id="see_/usr/share/doc/bash/examples/startup-files_(in_the_package_bash-doc)">see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)</h1><h1 id="for_examples">for examples</h1><h1 id="Source_global_definitions">Source global definitions</h1><p>if [ -f /etc/bash.bashrc ]; then<br>        . /etc/bash.bashrc<br>fi</p>
+<h1 id="If_not_running_interactively,_don’t_do_anything">If not running interactively, don’t do anything</h1><p>[ -z “$PS1” ] &amp;&amp; return</p>
+<h1 id="don’t_put_duplicate_lines_in_the_history-_See_bash(1)_for_more_options">don’t put duplicate lines in the history. See bash(1) for more options</h1><h1 id="…_or_force_ignoredups_and_ignorespace">… or force ignoredups and ignorespace</h1><p>HISTCONTROL=ignoredups:ignorespace</p>
+<h1 id="append_to_the_history_file,_don’t_overwrite_it">append to the history file, don’t overwrite it</h1><p>shopt -s histappend</p>
+<h1 id="for_setting_history_length_see_HISTSIZE_and_HISTFILESIZE_in_bash(1)">for setting history length see HISTSIZE and HISTFILESIZE in bash(1)</h1><p>HISTSIZE=1000<br>HISTFILESIZE=2000</p>
+<h1 id="check_the_window_size_after_each_command_and,_if_necessary,">check the window size after each command and, if necessary,</h1><h1 id="update_the_values_of_LINES_and_COLUMNS-">update the values of LINES and COLUMNS.</h1><p>shopt -s checkwinsize</p>
+<h1 id="make_less_more_friendly_for_non-text_input_files,_see_lesspipe(1)">make less more friendly for non-text input files, see lesspipe(1)</h1><p>[ -x /usr/bin/lesspipe ] &amp;&amp; eval “$(SHELL=/bin/sh lesspipe)”</p>
+<h1 id="Add_an_“alert”_alias_for_long_running_commands-_Use_like_so:">Add an “alert” alias for long running commands.  Use like so:</h1><h1 id="sleep_10;_alert">sleep 10; alert</h1><p>alias alert=’notify-send —urgency=low -i “$([ $? = 0 ] &amp;&amp; echo terminal || echo error)” “$(history|tail -n1|sed -e ‘\’’s/^\s<em>[0-9]+\s</em>//;s/[;&amp;|]\s*alert$//‘\’’)”‘</p>
+<h1 id="Alias_definitions-">Alias definitions.</h1><h1 id="You_may_want_to_put_all_your_additions_into_a_separate_file_like">You may want to put all your additions into a separate file like</h1><h1 id="~/-bash_aliases,_instead_of_adding_them_here_directly-">~/.bash_aliases, instead of adding them here directly.</h1><h1 id="See_/usr/share/doc/bash-doc/examples_in_the_bash-doc_package-">See /usr/share/doc/bash-doc/examples in the bash-doc package.</h1><p>if [ -f ~/.bash_aliases ]; then<br>    . ~/.bash_aliases<br>fi</p>
+<h1 id="mint-fortune">mint-fortune</h1><p>/usr/bin/mint-fortune</p>
+<h1 id="tcstory">tcstory</h1><p>if [ “$color_prompt” = yes ]; then<br>PS1=’${debian_chroot:+($debian_chroot)}[\033[01;32m]\u@\h[\033[00m]:[\033[01;34m]\w[\033[00m]\$ ‘<br>else<br>PS1=’[\e[32m]\u [\e[33m]\w[\e[35m] \$ [\e[0m]‘<br>fi<br>alias cl=’clear;ls’<br>alias de=’cd ~/desktop’<br>alias ch=’chmod u+x ‘</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

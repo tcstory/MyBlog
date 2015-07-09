@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux 重新挂载分区（教程） | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="今晚搞了一晚上，终于搞定了所有的问题，现在把他贴出来，作为一个教程">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="linux 重新挂载分区（教程）"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-10-11T16:59:00.000Z"><a href="/MyBlog/2013/10/12/linux-重新挂载分区（教程）/">2013-10-12</a></time>
+      
+      
+  
+    <h1 class="title">linux 重新挂载分区（教程）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　今晚搞了一晚上，终于搞定了所有的问题，现在把他贴出来，作为一个教程<br><a id="more"></a></p>
+<p>　　我是在virtualbox 下面安装的luubntu 13.04，因为我的笔记本性能不强，二代i3和2g内存，所以我的虚拟机配置比较低，给了lubuntu 512m的内存，8g硬盘，顺便说一下在virtualbox里面切换虚拟机的linux 的tty 的方法是按下键盘右边的 ctrl + F1 （f2 之类的也可以）</p>
+<p>　　首先 ，用到的命令如下</p>
+<p>　　1.mount　　挂载分区</p>
+<p>　　2.cfdisk　　新建分区</p>
+<p>　　3.blkid　　查看分区的uuid，因为编辑 /etc/fstab/ 会用到</p>
+<p>　　4.mkfs　　把新建的分区格式化为某个文件系统</p>
+<p>　　本虚拟机的分区情况</p>
+<p>　　内存512m 硬盘8G， 给了 / 目录 6G，其他的分区没有设置，因为我们要学习挂载分区，我们的目标是给swap 512M 给 /home 2G</p>
+<p>　　1.首先，先使用cfdisk软件</p>
+<p>　　补充一下，为什么我不是用fdisk呢？书上也许大部分用的是fdisk（我买的书 就是这样的），因为我曾经试过，我把我的一个在win 7下格式化的nfts空闲分区用mkfs 格式化成 ext4后 在fdisk 里面居然不能识别，它认为那个分区是windows格式的分区，这个问题我搞了好久，后来听说了有cfdisk这个软件，打开一个，发现cfdisk居然 能正确识别，所以我就打算使用cfdisk 了，所以本教程以cfdisk</p>
+<p><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/01.png" alt="此处输入图片的描述"></p>
+<p>可以看到 当前硬盘上只有一个分区 就是sda1 被挂载到了 / 目录下<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12003034-7e17abfea19f4d8f9f893d9045ce92f1.png" alt="此处输入图片的描述"><br>打开 cfdisk 注意 cfdisk 后面要跟上某个整块硬盘，例如sda sdb ，而不能是某个硬盘的某个分区，例如sda1或则 sda2<br>　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02.png" alt="此处输入图片的描述"><br>进入主界面后，可以看到 现在sda1 分区上有一个主分区了（primary），现在 我们把光标移动到 “Free Space” 这一行，选择下方的“New” 来新建一个分区（按下回车键）<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/03.png" alt="此处输入图片的描述"><br>这个时候，它会询问你是建立主分区（primary）还是逻辑分区（lpgical），一般来说，一个硬盘最多4个主分区，我习惯把 / 设置为主分区 但是会吧 swap 和 /home 设置为逻辑分区，这个的区别这里我就不说了 ，在这里选择 逻辑分区（logical）<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/04.png" alt="此处输入图片的描述"><br>直接输入分区的大小，然后按下回车<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/05.png" alt="此处输入图片的描述"><br>默认beginning<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/06.png" alt="此处输入图片的描述"><br>已经新建好一个分区了，接下来再建立swap（你可能会觉得奇怪，为什么没有马上设置要格式化的文件系统呢？例如把他格式化为ext4，因为这个软件并没有这个功能，他只是分区，真正格式化要用到mkfs 命令）<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/07.png" alt="此处输入图片的描述"><br>如法炮制 不多说<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/08.png" alt="此处输入图片的描述"><br>按照刚刚的步骤设置完了后，他就会出现如下方的选项，这个时候按下方向键（只能按下右键才能到达第二行），选择 “Type”，按下回车<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/09.png" alt="此处输入图片的描述"><br>他会马上给你列出一大堆文件系统，按下回车，<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/10.png" alt="此处输入图片的描述"><br>一按下回车，他就默认帮你选择82，这个分区就是i我们想要的swap分区，你可以对照他给出的列表，按下回车<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/11.png" alt="此处输入图片的描述"><br>这个时候，你可以选择离开（Quit），一切修改都不会保存，或则选择 “Write”，<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/12.png" alt="此处输入图片的描述"><br>他会询问你确定修改吗？输入yes，然后就可以离开了 ，并且重启电脑<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/13.png" alt="此处输入图片的描述"><br>我们再看一下，发现已经分好了（其中的sda2这个分区我们没有设置为什么也会出现呢？而且也只有2kb，我也不知道，反正，不影响，实在不行就删除他算了），接下来 激活swap分区，<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/14.png" alt="此处输入图片的描述"><br>使用的命令是mkswap /dev/sda6 （为什么是sda6呢？ 因为你从大小就可以看到，他就是我们刚刚设置的swap分区）<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/15.png" alt="此处输入图片的描述"><br>接下来 使用mkfs -t ext4来格式化分区，这个时候我们不用急着现在挂载，因为我们需要让它开机自动挂载，怎么办呢？ 修改 /etc/fstab 文件，但是在此之前，我们要查看分区的uuid（表示每一个分区的数字），使用blkid 查看<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/16.png" alt="此处输入图片的描述"><br>这个时候，我们要记下新挂载的sda5和sda6的uuid ，并且打开/etc/fstab 修改这个文件<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/17.png" alt="此处输入图片的描述"><br>注意 ，我在这个系统用的是leafpad打开，<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/18.png" alt="此处输入图片的描述"><br>这里一定要注意格式 ，我给一个大概的格式</p>
+<p>swap 的通用设置是</p>
+<p>uuid=xxxxxx none  swap sw 0 0    记住这写选项要用空格分开</p>
+<p>普通的分区的设置是（以/home为例）</p>
+<p>uuid=xxxxxxxx    /home ext4 defaults 0  2</p>
+<p>但是你以为到这里就结束了吗？我们还要修改，因为之前我们的任务是  把新建的分区挂载到 /home 目录下，但是有一个问题需要注意，就是我们在安装的时候只是设置了 / 分区，但是我们新建用户后，系统自动帮我们在 6G大小的 / 分区下创建了一个 /home/你的用户名 目录，所以当我们把 新建的 分区 也挂载到 /home目录的时候 就会有冲突，而且你的配置文件在 6G大小的 /home/你的用户名 分区下面，一但你重新挂载了/home 分区，原来的/home目录就会被后来新分区里面的/home目录覆盖掉，这就导致了你重启后无法登陆系统的图形界面，因为登陆图形界面需要到你个人（这个时候系统会卡在进度条那里，你可以选择 按下 s 键 跳过 或则 按下m键 修改 ），所以我们要先备份 原来/home/你的用户名 目录下的所有文件，使用方法如下<br><img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/19.png" alt="此处输入图片的描述"></p>
+<p>直接输入分区的大小，然后按下回车（因为我做这个操作的时候 ，编辑/etc/fstab 出错了，我在swap这一行漏打 了 一个单词，导致直接出错，后来是我在文本界面修改好的，所以接下来的几步没有截图，如果你不是很懂，请先学习一个linux 的基本操作）</p>
+<p>新建立一个拿来备份的文件夹 我以 backup为例 </p>
+<p>使用sudo cp -r /home /my  /my_backup   （记住要把 备份文件放在/ 分区下面，因为等一下/home 目录会被我们覆盖掉）</p>
+<p>然后使用 sudo mount /dev/sda5 /home  （这一步就覆盖掉了原来的 /home 目录）</p>
+<p>然后再把 /my_back 目录下的 /home 文件夹全部复制到 现在的/home 目录下</p>
+<p>最后，检查一下，复制后的 /home 目录 的属主和属组 是不是你的名字，如果不是的话，就算一切修改好了也可能出问题，假如你作为root 用户复制了 那写文件，但是当系统重启读取 你的用户下的文件的时候，系统就会被拒绝，因为你的用户不能读取root的文件（其实，你没有复制时那写文件确实是属于你的，但是经过了root 用户复制，就会变成他的）</p>
+<p>最后最后，就大功告成了~！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

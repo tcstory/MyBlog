@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>emmet-vim | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="最近啊，我投奔了网页的开发，看了一本《head first HTML and CSS》的书，感觉非常不错，然后又配置了一些vim里面用到的插件，现在我把学习到的东西记录下来！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="emmet-vim"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-11-02T07:28:00.000Z"><a href="/MyBlog/2013/11/02/emmet-vim/">2013-11-02</a></time>
+      
+      
+  
+    <h1 class="title">emmet-vim</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　　最近啊，我投奔了网页的开发，看了一本《head first HTML and CSS》的书，感觉非常不错，然后又配置了一些vim里面用到的插件，现在我把学习到的东西记录下来！<br><a id="more"></a></p>
+<p>　　首先，我不会在这里写emmet 的具体操作方法，你可以去官方自己看教程，如果英语不好的话，那么看这个朋友的博文，他把用到的教程都翻译成了中文<a href="http://www.cnblogs.com/matchless/tag/emmet/" target="_blank" rel="external">http://www.cnblogs.com/matchless/tag/emmet/</a></p>
+<p>　　如果你试过在一个html文件中插入一个html5的模板，你就发现他的格式如下</p>
+<p>　　ps： 在插入模式输入 html:5  按下默认的快捷键，</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02150204-0ec511e8fe97402dae7f348f25e1c709.png" alt="此处输入图片的描述"></p>
+<p>　　是不是感觉非常蛋疼，这个模板出现后，光标默认出现在body 标签之间，看到了吗？</p>
+<p>　　后来我改了一下，变成了如下这个样子</p>
+<p>　　ps：你会发现，上面那个模板是没有给出标题的（title元素里面没有内容，但是光标又在body里面，所以你每次都要把光标移动到title这里，是不是很蛋疼）</p>
+<p>　　　　我改了一下， 你可以按照我改后的模式输入 html:5{这个填写的是title的内容}</p>
+<p>　　如图所示</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02150720-8fb6b152043d426bbb2d63c260eb1e5f.png" alt="此处输入图片的描述"></p>
+<p>　　按下默认的快捷键后，当当当当………………..</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02150812-22f15d264ac04f95911488d472cf7388.png" alt="此处输入图片的描述"></p>
+<p>　　看到了把，这就是我修改的成果，接下来，给出方法</p>
+<p>　　提醒一下，我个人是不会用vimscript的，但是我看过一点，所以我能多多少少理解用vimscript写成的函数的功能是什么。</p>
+<p>　　而且，如果你想自己动手修改的话，请把emmet相关的文档教程看完，不然你不懂得为什么这样做</p>
+<p>　　官方上给出了一个订制的简单教程，说是用到  xxx.json 之类的文件，在这里我要提醒你，vim是不需要下载这类文件来订制的，他说的估计是sublime text之类的编辑器</p>
+<p>　　那么我们该怎么修改呢？</p>
+<p>　　其实，他的配置文件放在了emmet-vim/autoload/emmet.vim 这个文件里面，用编辑器打开 emmet.vim这个文件，在1420左右看到了 默认的html5模板</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02151716-0aebd728096f40c1bae8efb7d88a4577.png" alt="此处输入图片的描述"></p>
+<p>　　注意，由于我的默认模板被我改了，所以我去github给出了默认的模板</p>
+<p>　　下图是我的修改</p>
+<p>　　<img src="http://7xk7fu.com1.z0.glb.clouddn.com/images/02151809-fdbe9cdc0aaa43a68e2b35691b054122.png" alt="此处输入图片的描述"></p>
+<p>　　你修改的时候要出去 最左边的 符号 ”\“  不能去掉，去掉会出错，然后说一下怎么配置， 符号 ”|“ 这个表示插入模板后光标出现的位置，${child} 这个的意思是 放入相关的内容，</p>
+<p>　　例如 a{xxxx}   ${child} =xxx  html:{xxxxxx}  ${child}=xxxx ，所以你只要在模板里面调整一下${child}的位置，就能很方便的插入标题的名字</p>
+<p>　　ps：原来默认的是插入html5模板只能这么用，而且不是自动插入标题</p>
+<p>　　　　html:5</p>
+<p>　　　　我的可以这么用</p>
+<p>　　　　html:5{标题}</p>
+<p>　　　　是不是很方便，</p>
+<p>　　最后说一下快捷键的设置</p>
+<p>　　在默认设置中，大部分命令都用到的快捷键是这个</p>
+<p>　　<c-y> ,          他的意思是 按下ctrl 键 和 y键  和  ，键（逗号）</c-y></p>
+<p>　　但是我觉得每次都输入那么多很麻烦，所以我写了一个mapping，把<c-y>改成了 F2，放在.vimrc文件里面</c-y></p>
+<p>　　let g:user_emmet_leader_key = ‘<f2>‘ “设置一下快捷键</f2></p>
+<p>　　为什么是这样设置呢？我在这里就不说了 ，请看一下文档就懂了，</p>
+<p>　　我接下来的目标是学会了vimscript后，就开始写一个函数，让vim检测到文件名是.html的时候自动插入html5模板～！</p>
+<p>　　好了 加油了</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

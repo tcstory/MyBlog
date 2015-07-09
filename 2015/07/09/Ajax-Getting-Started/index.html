@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ajax -- Getting Started | 花瓣奶牛的博客</title>
+  <meta name="author" content="tcstory">
+  
+  <meta name="description" content="读了一下MDN的Ajax文档,做一下记录,不过内容不是很多,更详细的内容请看Reference">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Ajax -- Getting Started"/>
+  <meta property="og:site_name" content="花瓣奶牛的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/MyBlog/favicon.png" rel="icon">
+  <link rel="alternate" href="/MyBlog/atom.xml" title="花瓣奶牛的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/MyBlog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/MyBlog/">花瓣奶牛的博客</a></h1>
+  <h2><a href="/MyBlog/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/MyBlog">Home</a></li>
+    
+      <li><a href="/MyBlog/archives">Archives</a></li>
+    
+      <li><a href="/MyBlog/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-07-09T08:53:32.000Z"><a href="/MyBlog/2015/07/09/Ajax-Getting-Started/">2015-07-09</a></time>
+      
+      
+  
+    <h1 class="title">Ajax -- Getting Started</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>读了一下<strong>MDN</strong>的<strong>Ajax</strong>文档,做一下记录,不过内容不是很多,更详细的内容请看<strong>Reference</strong><br><a id="more"></a></p>
+<p>The two features provided by Ajax:</p>
+<ol>
+<li>Make requests to the server without reloading the page</li>
+<li>Receive and work with data from the server</li>
+</ol>
+<h3 id="Step_1_–_How_to_make_an_HTTP_request">Step 1 – How to make an HTTP request</h3><ol>
+<li><p>Create an XMLHttpRequest object</p>
+<p> <strong>don’t take account of IE browser.</strong><br> <code>var xml = new XMLHttpRequest()</code></p>
+</li>
+<li><p>Tell XHLHttpRequest object what to do after receiving server response</p>
+ <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xml.onreadystatechange = <span class="function"><span class="keyword">function</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (xml.readyState === <span class="number">4</span> &amp;&amp; xml.<span class="keyword">status</span> === <span class="number">200</span>) &#123;</span><br><span class="line">        // <span class="keyword">do</span> something</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Make the request</p>
+ <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">httpRequest.<span class="built_in">open</span>(<span class="string">'GET'</span>, <span class="string">'http://www.example.org/some.file'</span>, <span class="keyword">true</span>);</span><br><span class="line">httpRequest.send(<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Step_2_–_Handling_the_server_response">Step 2 – Handling the server response</h3><p>the full list of readyState value is as follow:</p>
+<ul>
+<li>0 (uninitialized)</li>
+<li>1 (loading)</li>
+<li>2 (loaded)</li>
+<li>3 (interactive)</li>
+<li>4 (complete)</li>
+</ul>
+<p>-</p>
+<ol>
+<li><p>check the response code of the http response</p>
+ <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">xml</span><span class="built_in">.</span>status <span class="subst">===</span> <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="comment">// perfect</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// there was a problem with the request</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>access the data from the server<br> you have two options to access the data:</p>
+<ol>
+<li>httpRequest.responseText – returns the server response as a string of text</li>
+<li>httpRequest.responseXML – returns the response as an XMLDocument object you can traverse using the JavaScript DOM functions</li>
+</ol>
+</li>
+<li><p>cancel the asynchronous request<br>you can canel the request by running <code>abort()</code> before you receving the data from the server.</p>
+</li>
+</ol>
+<h3 id="Referrence">Referrence</h3><ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started" target="_blank" rel="external">Getting Started</a></li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/MyBlog/categories/JavaScript/">JavaScript</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/MyBlog/tags/ajax/">ajax</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 tcstory
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/MyBlog/js/jquery.imagesloaded.min.js"></script>
+<script src="/MyBlog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/MyBlog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/MyBlog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

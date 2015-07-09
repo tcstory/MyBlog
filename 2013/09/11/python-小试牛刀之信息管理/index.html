@@ -6,8 +6,7 @@
   <title>python 小试牛刀之信息管理 | 花瓣奶牛的博客</title>
   <meta name="author" content="tcstory">
   
-  <meta name="description" content="这个是之前写的半成品，但是一直没有好好的写完，今晚我把它补充完整，并且贴出了遇到的问题
-这个程序并没有处理中文，主要是python 2.7对于中文的支持太蛋疼了，虽然可以设置utf8编码，但是如果列表中的某个变量是中文的话，打就会打印出那种我看不懂的编码，我干脆懒得理了，我想自己用python来处理中文的需求基本没有，可能以后就是用python谢谢程序玩玩而已">
+  <meta name="description" content="这个是之前写的半成品，但是一直没有好好的写完，今晚我把它补充完整，并且贴出了遇到的问题">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -36,11 +35,11 @@
 <nav id="main-nav" class="alignright">
   <ul>
     
-      <li><a href="/">Home</a></li>
+      <li><a href="/MyBlog">Home</a></li>
     
-      <li><a href="/archives">Archives</a></li>
+      <li><a href="/MyBlog/archives">Archives</a></li>
     
-      <li><a href="/about">About</a></li>
+      <li><a href="/MyBlog/about">About</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -63,8 +62,7 @@
     </header>
     <div class="entry">
       
-        <p>这个是之前写的半成品，但是一直没有好好的写完，今晚我把它补充完整，并且贴出了遇到的问题</p>
-<p>这个程序并没有处理中文，主要是python 2.7对于中文的支持太蛋疼了，虽然可以设置utf8编码，但是如果列表中的某个变量是中文的话，打就会打印出那种我看不懂的编码，我干脆懒得理了，我想自己用python来处理中文的需求基本没有，可能以后就是用python谢谢程序玩玩而已<br><a id="more"></a></p>
+        <p>这个是之前写的半成品，但是一直没有好好的写完，今晚我把它补充完整，并且贴出了遇到的问题<br><a id="more"></a><br>这个程序并没有处理中文，主要是python 2.7对于中文的支持太蛋疼了，虽然可以设置utf8编码，但是如果列表中的某个变量是中文的话，打就会打印出那种我看不懂的编码，我干脆懒得理了，我想自己用python来处理中文的需求基本没有，可能以后就是用python谢谢程序玩玩而已<br><!--more--></p>
 <pre><code><span class="comment">#!/usr/bin/python</span>
 <span class="comment"># -*- coding: utf-8 -*-</span>
 <span class="keyword">from</span> os <span class="keyword">import</span> system
@@ -177,23 +175,34 @@ info[<span class="string">'tcstory'</span>]=(<span class="number">1993</span>,<s
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="search" name="q" results="0" placeholder="搜索">
     <input type="hidden" name="q" value="site:tcstory.github.io/MyBlog">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">分類</h3>
+  <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>2</small></li>
+    <li><a href="/MyBlog/categories/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/MyBlog/categories/cnblog的旧文/">cnblog的旧文</a><small>20</small></li>
   
   </ul>
 </div>
 
 
   
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/MyBlog/tags/ajax/">ajax</a><small>1</small></li>
+  
+  </ul>
+</div>
+
 </aside>
     <div class="clearfix"></div>
   </div>
